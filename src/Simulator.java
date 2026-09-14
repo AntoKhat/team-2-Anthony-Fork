@@ -20,6 +20,8 @@ public class Simulator extends JPanel {
         createVolcano(400, 300, 150, 0);
         createCave(1500,1000);
         createCow(200, 300);
+        createCow(100, 250);
+        createCow(250, 100);
 
         timer = new Timer(16, e -> {
             updateSimulation();
