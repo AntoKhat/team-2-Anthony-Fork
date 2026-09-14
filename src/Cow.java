@@ -1,12 +1,14 @@
 import java.awt.*;
+import java.util.Random;
 
 public class Cow extends Animal implements AnimalBehaviours {
-    // stats can change later for balancing
     private static float defaultHealth = 8f;
     private static float defaultSpeed = 3f;
     private static int defaultHunger = 10;
     private static int defaultDamage = 0; //purely prey
 
+    private static Random rand = new Random();
+    private int wanderTimer = 0;
     Cow() //default spawn
     {
         setStats();
@@ -21,6 +23,16 @@ public class Cow extends Animal implements AnimalBehaviours {
         this.y = y;
     }
 
+    @Override
+    public void update(int screenWidth, int screenHeight) {
+        wanderTimer--;
+        if (wanderTimer <= 0) {
+            dx = rand.nextInt(3) - 1; // -1, 0, or 1
+            dy = rand.nextInt(3) - 1; // -1, 0, or 1
+            wanderTimer = 30 + rand.nextInt(60); // new direction roughly every 0.5-1.5s at 60fps
+        }
+        super.update(screenWidth, screenHeight); // let Animal's existing movement logic actually move x/y
+    }
     @Override
     public void setStats(){
         this.health = defaultHealth;
