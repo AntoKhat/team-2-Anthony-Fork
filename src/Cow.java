@@ -52,7 +52,7 @@ private static final BufferedImage sprite =
    @Override
     public void draw(Graphics2D g2) {
         if (sprite != null) {
-            g2.drawImage(sprite, x, y, 45, 45, null);
+            g2.drawImage(sprite, x, y, 100, 100, null);
         } else {
             g2.setColor(new Color(180, 130, 90));
             g2.fillRoundRect(x, y, 35, 30, 8, 8);
